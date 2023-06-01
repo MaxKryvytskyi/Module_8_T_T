@@ -80,14 +80,14 @@ def get_birthdays_per_week(users):
 
 # Функція яка виводить результат. 
 def result(birthday_list):
-    print('{:^10} '.format(" " + "_"*113 + " "))
-    print('|{:^113}| '.format("Birthday"))
+    # print('{:^10} '.format(" " + "_"*113 + " "))  # Табличка працює не у всіх (╯ ° □ °) ╯ (┻━┻)
+    # print('|{:^113}| '.format("Birthday"))
     for weekday, names in birthday_list.items():
         if names == []:
             continue
-        print('{:^10} '.format("|" + "_"*113 + "|"))
-        print('|{:<10} : {:<100}| '.format(weekday, ', '.join(names)))
-    print('{:^10} '.format("|" + "_"*113 + "|"))
+        # print('{:^10} '.format("|" + "_"*113 + "|"))
+        print('{:<10} : {:<100}'.format(weekday, ', '.join(names))) # print('|{:<10} : {:<100}|'.format(weekday, ', '.join(names)))
+    # print('{:^10} '.format("|" + "_"*113 + "|"))
 
 if __name__ == "__main__":
     get_birthdays_per_week(users)
