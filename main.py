@@ -2,36 +2,36 @@ from datetime import datetime as dt
 from datetime import *
 
 users = [
-        {"name":"Bill", "birthday":dt(1995,6,6)},
-        {"name":"Stiv", "birthday":dt(1990,6,6)},
-        {"name":"Jill", "birthday":dt(1990,6,6)},
-        {"name":"John", "birthday":dt(1998,6,6)},
-        {"name":"Evgen", "birthday":dt(1992,6,6)},
-        {"name":"Jack", "birthday":dt(1980,6,5)},
-        {"name":"Ann", "birthday":dt(1964,6,5)},
-        {"name":"Helen", "birthday":dt(1999,6,5)},
-        {"name":"Max", "birthday":dt(1991,7,5)},
-        {"name":"Max", "birthday":dt(1999,7,5)},
-        {"name":"Piter", "birthday":dt(1984,6,5)},
-        {"name":"Charles", "birthday":dt(1984,6,5)},
-        {"name":"German", "birthday":dt(1981,6,5)},
-        {"name":"Aaron", "birthday":dt(1992,6,5)},
-        {"name":"Alex", "birthday":dt(1993,6,5)},
-        {"name":"Alice", "birthday":dt(1998,6,5)},
-        {"name":"Andy", "birthday":dt(1997,6,5)},
-        {"name":"Bert", "birthday":dt(1994,6,5)},
-        {"name":"Bruno", "birthday":dt(1992,6,5)},
-        {"name":"Joan", "birthday":dt(1987,6,5)},
-        {"name":"Kent", "birthday":dt(1959,6,5)},
-        {"name":"Kate", "birthday":dt(1978,6,5)},
-        {"name":"Karen", "birthday":dt(1968,6,5)},
-        {"name":"Logan", "birthday":dt(1988,6,5)}
+        {"name":"Bill", "birthday":dt(1995,6,30)},
+        {"name":"Stiv", "birthday":dt(1990,6,26)},
+        {"name":"Jill", "birthday":dt(1990,6,28)},
+        {"name":"John", "birthday":dt(1998,6,28)},
+        {"name":"Evgen", "birthday":dt(1992,6,30)},
+        {"name":"Jack", "birthday":dt(1980,7,1)},
+        {"name":"Ann", "birthday":dt(1964,7,1)},
+        {"name":"Helen", "birthday":dt(1999,7,1)},
+        {"name":"Max", "birthday":dt(1991,7,2)},
+        {"name":"Max", "birthday":dt(1999,7,2)},
+        {"name":"Piter", "birthday":dt(1984,7,1)},
+        {"name":"Charles", "birthday":dt(1984,6,1)},
+        {"name":"German", "birthday":dt(1981,7,1)},
+        {"name":"Aaron", "birthday":dt(1992,6,29)},
+        {"name":"Alex", "birthday":dt(1993,6,30)},
+        {"name":"Alice", "birthday":dt(1998,6,29)},
+        {"name":"Andy", "birthday":dt(1997,6,30)},
+        {"name":"Bert", "birthday":dt(1994,6,30)},
+        {"name":"Bruno", "birthday":dt(1992,6,28)},
+        {"name":"Joan", "birthday":dt(1987,6,28)},
+        {"name":"Kent", "birthday":dt(1959,6,26)},
+        {"name":"Kate", "birthday":dt(1978,6,26)},
+        {"name":"Karen", "birthday":dt(1968,6,26)},
+        {"name":"Logan", "birthday":dt(1988,6,24)}
 ]
 # Флажок для всвякого. 
 flag = 0
 
 # Словник, число/день тижня.
-weekday_list = { "0": "Monday", "1": "Tuesday", "2": "Wednesday", "3": "Thursday", "4": "Friday", "5": "Saturday","6": "Sunday"}
+weekday_list = { "0": "Monday", "1": "Tuesday", "2": "Wednesday", "3": "Thursday", "4": "Friday", "5": "Saturday", "6": "Sunday"}
 
 # Словник, день тижня/ ім'я.
 birthday_list = {"Monday": [], "Tuesday": [], "Wednesday": [], "Thursday": [], "Friday": [], "Saturday": [], "Sunday": []}
@@ -40,7 +40,10 @@ birthday_list = {"Monday": [], "Tuesday": [], "Wednesday": [], "Thursday": [], "
 today = dt.now()
 
 # Через тиждень.
-next_week = datetime(year=today.year, month=today.month, day=today.day+7)
+# next_week = datetime(year=today.year, month=today.month, day=today.day+7)
+
+next_week = today + timedelta(days=7)
+print(next_week)
 
 # Функція яка перевіряє в кого день народження на протязі наступної неділі.
 def get_birthdays_per_week(users):
@@ -59,6 +62,7 @@ def fix(weekday, result):
     global flag
     flag += 1
     if flag > 1:
+        
         print('| {:^11} : {:<59}|'.format(' ' * len(weekday), ', '.join(result))) 
     else:
         print('| {:^11} : {:<59}|'.format(weekday, ', '.join(result))) 
@@ -81,6 +85,10 @@ def output_of_results(birthday_list):
                 fix(weekday, result)
                 result.clear()
                 sums = 0
+        if True:
+            fix(weekday, result)
+            result.clear()
+        
         flag = 0
         print('{:^11} '.format("|" + "_"*74 + "|"))
 
